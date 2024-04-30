@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import SimpleMdeReact from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
-import './NewpostPage.scss';
+import './EditpostPage.scss';
 
-export const NewpostPage = () => {
+export const EditpostPage = () => {
   const options = useMemo(
     () => ({
       spellChecker: false,
@@ -22,26 +22,26 @@ export const NewpostPage = () => {
     [],
   );
   return (
-    <div className="newpost-page">
-      <div className="newpost-page__wrapper">
-        <p className="newpost-page__title">Create a new post</p>
+    <div className="editpost-page">
+      <div className="editpost-page__wrapper">
+        <p className="editpost-page__title">Edit your post</p>
 
-        <form className="newpost-page__form" id="newpost-page__form">
-          <div className="newpost-page__form-input">
+        <form className="editpost-page__form" id="editpost-page__form">
+          <div className="editpost-page__form-input">
             <input
-              className="newpost-page__form-title"
+              className="editpost-page__form-title"
               type="text"
               name="title"
               id="title"
               placeholder="Title..."></input>
           </div>
-          <SimpleMdeReact options={options} className="newpost-page__form-text" />
-          <div className="newpost-page__form-buttons-group">
-            <button type="submit" className="newpost-page__form-submit">
-              <p>SUBMIT</p>
+          <SimpleMdeReact options={options} className="editpost-page__form-text" />
+          <div className="editpost-page__form-buttons-group">
+            <button type="submit" className="editpost-page__form-save">
+              <p>SAVE</p>
             </button>
             <Link to="/">
-              <button className="newpost-page__form-cancel">
+              <button className="editpost-page__form-cancel">
                 <p>CANCEL</p>
               </button>
             </Link>

@@ -2,7 +2,7 @@
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/variables' as *;
 
-.newpost-page {
+.editpost-page {
   background-color: $background-grey;
   &__wrapper {
     padding: 1rem;
@@ -62,15 +62,15 @@
       @include tablet {
         gap: 1rem;
       }
-  
+
       @include desktop {
         gap: 1.5rem;
       }
     }
 
-    &-submit {
+    &-save {
       @include mobile-label-buttons;
-      padding: 0.5rem 2.6329rem;
+      padding: 0.5rem 3.2rem;
       color: $button-blue;
       border: 1px solid $button-blue;
       background-color: $white;
@@ -78,7 +78,7 @@
       cursor: pointer;
     }
 
-    &-submit:hover {
+    &-save:hover {
       background-color: $button-blue;
       color: $white;
       border: 1px solid $button-blue;
