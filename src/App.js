@@ -6,6 +6,8 @@ import { HomePage } from './pages/HomePage/HomePage';
 
 import './App.scss';
 import { PostPage } from './pages/PostPage/PostPage';
+import { LoginPage } from './pages/LoginPage/LoginPage';
+import { SignupPage } from './pages/SignupPage/SignupPage';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/sign-up" element={<SignupPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/post" element={<PostPage />} />
         </Routes>

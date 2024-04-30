@@ -14,8 +14,12 @@ export const Header = () => {
         </div>
 
         <div className="header__buttonsOut">
-          <button className="header__buttonsOut-login">LOGIN</button>
-          <button className="header__buttonsOut-create">CREATE ACCOUNT</button>
+          <Link to="/login">
+            <button className="header__buttonsOut-login">LOGIN</button>
+          </Link>
+          <Link to="sign-up">
+            <button className="header__buttonsOut-create">CREATE ACCOUNT</button>
+          </Link>
         </div>
 
         <div className="header__buttonsIn">
