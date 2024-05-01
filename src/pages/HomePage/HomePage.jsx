@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import { PostCard } from '../../components/PostCard/PostCard';
-
 import './HomePage.scss';
-import axios from 'axios';
+
 
 export const HomePage = () => {
   const [getAllposts, setGetAllPosts] = useState();

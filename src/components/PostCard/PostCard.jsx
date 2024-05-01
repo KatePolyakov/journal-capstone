@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './PostCard.scss';
+import { Link } from 'react-router-dom';
 
 export const PostCard = ({ getAllposts }) => {
   return (
@@ -15,10 +16,16 @@ export const PostCard = ({ getAllposts }) => {
                 <p className="post-card__date">{post.createdAt}</p>
               </div>
             </div>
-            <div className="post-card__main">
-              <img src={post.imageUrl} alt="main" className="post-card__main-img" />
-              <p className="post-card__title">{post.title}</p>
-            </div>
+            <Link to={`/posts/${post._id}`}>
+              <div className="post-card__main">
+                {post.imageUrl ? (
+                  <img src={post.imageUrl} alt="main" className="post-card__main-img" />
+                ) : (
+                  ''
+                )}
+                <p className="post-card__title">{post.title}</p>
+              </div>
+            </Link>
           </div>
         </div>
       ))}

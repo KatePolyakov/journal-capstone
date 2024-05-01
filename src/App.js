@@ -29,7 +29,7 @@ function App() {
           <Route path="/sign-up" element={<SignupPage />} />
 
           {/* POST */}
-          <Route path="/post" element={<PostPage />} />
+          <Route path="/posts/:id" element={<PostPage />} />
           <Route path="/new-post" element={<NewpostPage />} />
           <Route path="/edit-post" element={<EditpostPage />} />
 
