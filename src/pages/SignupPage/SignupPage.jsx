@@ -1,31 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 import './SignupPage.scss';
-import axios from 'axios';
 
 export const SignupPage = () => {
   const history = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setfullName] = useState('');
+  const handleSubmit = async (event) => {
+    
+    // prevent default behaviour
+    event.preventDefault();
 
-  async function submit(e) {
-    e.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const fullName = event.target.fullName.value;
 
     try {
       await axios
         .post('http://localhost:8080/auth/register', {
-          email,
-          fullName,
-          password,
+          email: email,
+          fullName: fullName,
+          password: password,
         })
         .then((res) => {
           if (res.data === 'exist') {
             alert('User already exists');
-          } else if (res.data === 'notexist') {
-            history('/', { state: { id: email } });
+          } else {
+            history('/login');
           }
         })
         .catch((e) => {
@@ -35,56 +37,47 @@ export const SignupPage = () => {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   return (
     <div className="signup-page">
       <div className="signup-page__wrapper">
-        <form className="signup-page__form">
+        <form className="signup-page__form" onSubmit={handleSubmit}>
           <div className="signup-page__form-container">
-            <label htmlFor="user-email" className="signup-page__form-label">
+            <label htmlFor="email" className="signup-page__form-label">
               <p>Email</p>
             </label>
             <input
               className="signup-page__form-input"
-              type="text"
+              type="email"
               placeholder="Enter Email"
-              name="user-email"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              name="email"
               required
             />
 
-            <label htmlFor="user-name" className="signup-page__form-label">
+            <label htmlFor="fullName" className="signup-page__form-label">
               <p>Username</p>
             </label>
             <input
               className="signup-page__form-input"
               type="text"
               placeholder="Enter Username"
-              name="user-name"
-              onChange={(e) => {
-                setfullName(e.target.value);
-              }}
+              name="fullName"
               required
             />
 
-            <label htmlFor="user-password" className="signup-page__form-label">
+            <label htmlFor="password" className="signup-page__form-label">
               <p>Password</p>
             </label>
             <input
               className="signup-page__form-input"
               type="password"
               placeholder="Enter Password"
-              name="user-password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              name="password"
               required
             />
 
-            <button type="submit" className="signup-page__form-button" onClick={submit}>
+            <button type="submit" className="signup-page__form-button">
               SIGN UP
             </button>
             <Link to="/">

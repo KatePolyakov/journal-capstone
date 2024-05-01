@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Header.scss';
 
-export const Header = () => {
-  // how can we determine if the user is logged in?
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(!!localStorage.getItem('authToken'));
-
+export const Header = ({ isUserLoggedIn, setIsUserLoggedIn }) => {
   return (
     <div className="header">
       <div className="header__wrapper">
@@ -17,19 +14,26 @@ export const Header = () => {
         </div>
 
         {isUserLoggedIn ? (
-          <div className="header__buttonsIn">
+          <div className="header__buttons-in">
             <Link to="/new-post">
-              <button className="header__buttonsIn-post">CREATE POST</button>
+              <button className="header__buttons-in-post">CREATE POST</button>
             </Link>
-            <button className="header__buttonsIn-logout">LOGOUT</button>
+            <button
+              className="header__buttons-in-logout"
+              onClick={() => {
+                localStorage.removeItem('authToken');
+                setIsUserLoggedIn(false);
+              }}>
+              LOGOUT
+            </button>
           </div>
         ) : (
-          <div className="header__buttonsOut">
+          <div className="header__buttons-out">
             <Link to="/login">
-              <button className="header__buttonsOut-login">LOGIN</button>
+              <button className="header__buttons-out-login">LOGIN</button>
             </Link>
-            <Link to="sign-up">
-              <button className="header__buttonsOut-create">CREATE ACCOUNT</button>
+            <Link to="/sign-up">
+              <button className="header__buttons-out-create">CREATE ACCOUNT</button>
             </Link>
           </div>
         )}
