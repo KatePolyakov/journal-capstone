@@ -5,16 +5,16 @@ import { Header } from './components/Header/Header';
 import { HomePage } from './pages/HomePage/HomePage';
 import { PostPage } from './pages/PostPage/PostPage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
+import { ProfilePage } from './pages/Profile/ProfilePage';
 import { SignupPage } from './pages/SignupPage/SignupPage';
 import { NewpostPage } from './pages/NewpostPage/NewpostPage';
 import { EditpostPage } from './pages/EditpostPage/EditpostPage';
+import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 
 import './App.scss';
-import { ProfilePage } from './pages/Profile/ProfilePage';
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(!!localStorage.getItem('authToken'));
-  
 
   return (
     <>
@@ -31,7 +31,11 @@ function App() {
 
           {/* POST */}
           <Route path="/posts/:id" element={<PostPage />} />
-          <Route path="/new-post" element={<NewpostPage isUserLoggedIn={isUserLoggedIn} />} />
+          {isUserLoggedIn ? (
+            <Route path="/new-post" element={<NewpostPage isUserLoggedIn={isUserLoggedIn} />} />
+          ) : (
+            <Route path="*" element={<NotFoundPage />} />
+          )}
           <Route path="/edit-post" element={<EditpostPage />} />
 
           <Route path="/profile" element={<ProfilePage />} />

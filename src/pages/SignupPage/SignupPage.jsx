@@ -6,7 +6,7 @@ import axios from '../../axios';
 import './SignupPage.scss';
 
 export const SignupPage = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     // prevent default behaviour
@@ -27,7 +27,7 @@ export const SignupPage = () => {
           if (res.data === 'exist') {
             alert('User already exists');
           } else {
-            history('/login');
+            navigate('/login');
           }
         })
         .catch((e) => {

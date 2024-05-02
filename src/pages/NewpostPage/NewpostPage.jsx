@@ -1,40 +1,78 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-//import axios from '../../axios';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from '../../axios';
 
-import axios from 'axios';
-
+//import axios from 'axios';
 
 import SimpleMdeReact from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
 import './NewpostPage.scss';
 
-export const NewpostPage = ({ isUserLoggedIn }) => {
-  const [user, setUser] = useState(null);
+export const NewpostPage = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState('');
 
-  console.log('isUser', isUserLoggedIn);
+  //const inputFileRef = useRef(null); //photo
+  const [imageUrl, setImageUrl] = useState('');
+  const [text, setText] = useState(''); //post hooks
+  const [title, setTitle] = useState(''); //title hooks
+  const [tags, setTags] = useState(''); //tags hooks
 
-  // useEffect (as soon as the component mounts)
-  useEffect(() => {
-    const fetchProfile = async () => {
-      // get the token from local storage
-      const token = JSON.parse(localStorage.getItem('authToken'));
-      // make a GET request to /profile
-      // add it as a header
-      const response = await axios.get('http://localhost:8080/auth/me', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  // useEffect(() => {
+  //   const fetchProfile = async () => {
+  //     const token = JSON.parse(localStorage.getItem('authToken'));
+  //     const response = await axios.get('http://localhost:8080/auth/me', {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     setUser(response.data);
+  //   };
+  //   fetchProfile();
+  // }, []);
 
-      setUser(response.data);
-    };
+  // console.log(user._id);
 
-    fetchProfile();
+  // const handleChangeFile = async (event) => {
+  //   try {
+  //     const formData = new FormData();
+  //     const file = event.target.files[0];
+  //     formData.append('image', file);
+  //     const { data } = await axios.post('/upload', formData);
+  //     setImageUrl(data.url);
+  //   } catch (error) {
+  //     console.warn(error);
+  //     alert('Error');
+  //   }
+  // };
+
+  //remove image
+  // const onClickRemoveImage = () => {
+  //   setImageUrl('');
+  // };
+  const onChange = useCallback((value) => {
+    setText(value);
   }, []);
 
-  console.log('user', user);
+  const handleAddPost = () => {
+    axios
+      .post('/posts', {
+        title: title,
+        text: text,
+        imageUrl: imageUrl,
+        tags: tags,
+
+        // user:user._id,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    navigate(`/`);
+  };
 
   const options = useMemo(
     () => ({
@@ -55,19 +93,22 @@ export const NewpostPage = ({ isUserLoggedIn }) => {
       <div className="newpost-page__wrapper">
         <p className="newpost-page__title">Create a new post</p>
 
-        <form className="newpost-page__form" id="newpost-page__form">
+        <form className="newpost-page__form" id="newpost-page__form" onSubmit={handleAddPost}>
           <div className="newpost-page__form-input">
             <input
               className="newpost-page__form-title"
               type="text"
               name="title"
               id="title"
-              placeholder="Title..."></input>
+              placeholder="Title..."
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}></input>
           </div>
           <SimpleMdeReact
             options={options}
             className="newpost-page__form-text"
-            type="text"
+            value={text}
+            onChange={onChange}
             name="text"
           />
           <div className="newpost-page__form-buttons-group">
