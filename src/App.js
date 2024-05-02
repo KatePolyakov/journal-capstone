@@ -14,6 +14,7 @@ import { ProfilePage } from './pages/Profile/ProfilePage';
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(!!localStorage.getItem('authToken'));
+  
 
   return (
     <>

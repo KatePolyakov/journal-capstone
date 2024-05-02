@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from '../../axios';
+//import axios from '../../axios';
+
+import axios from 'axios';
 
 
 import SimpleMdeReact from 'react-simplemde-editor';
@@ -20,7 +22,7 @@ export const NewpostPage = ({ isUserLoggedIn }) => {
       const token = JSON.parse(localStorage.getItem('authToken'));
       // make a GET request to /profile
       // add it as a header
-      const response = await axios.get('/auth/me', {
+      const response = await axios.get('http://localhost:8080/auth/me', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
