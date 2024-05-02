@@ -1,11 +1,11 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import React from 'react';
+
+import axios from '../../axios';
 
 export const ProfilePage = () => {
   try {
     axios
-      .get('http://localhost:8080/auth/me')
+      .get('/auth/me')
       .then((res) => {
         console.log('profile', res.data);
       })

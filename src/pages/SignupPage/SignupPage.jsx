@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+
+import axios from '../../axios';
 
 import './SignupPage.scss';
 
@@ -8,7 +9,6 @@ export const SignupPage = () => {
   const history = useNavigate();
 
   const handleSubmit = async (event) => {
-    
     // prevent default behaviour
     event.preventDefault();
 
@@ -18,7 +18,7 @@ export const SignupPage = () => {
 
     try {
       await axios
-        .post('http://localhost:8080/auth/register', {
+        .post('/auth/register', {
           email: email,
           fullName: fullName,
           password: password,

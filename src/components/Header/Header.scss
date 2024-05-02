@@ -71,7 +71,6 @@
     gap: 1rem;
 
     @include tablet {
-      display: none;
       flex-direction: row;
     }
 

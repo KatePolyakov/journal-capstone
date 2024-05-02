@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 import './LoginPage.scss';
@@ -16,12 +16,13 @@ export const LoginPage = ({ setIsUserLoggedIn }) => {
 
     try {
       // send username/password in a POST request to the API
-      const response = await axios.post('http://localhost:8080/auth/login', {
+      const response = await axios.post('/auth/login', {
         email: email,
         password: password,
       });
-      localStorage.setItem('authToken', response.data);
-
+      //console.log('response', response.data);
+      localStorage.setItem('authToken', JSON.stringify(response.data.token));
+      //console.log(JSON.parse(localStorage.getItem('authToken')));
       setIsUserLoggedIn(true);
       history('/');
     } catch (error) {

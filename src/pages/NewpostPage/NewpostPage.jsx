@@ -1,12 +1,39 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from '../../axios';
+
 
 import SimpleMdeReact from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
 import './NewpostPage.scss';
 
-export const NewpostPage = () => {
+export const NewpostPage = ({ isUserLoggedIn }) => {
+  const [user, setUser] = useState(null);
+
+  console.log('isUser', isUserLoggedIn);
+
+  // useEffect (as soon as the component mounts)
+  useEffect(() => {
+    const fetchProfile = async () => {
+      // get the token from local storage
+      const token = JSON.parse(localStorage.getItem('authToken'));
+      // make a GET request to /profile
+      // add it as a header
+      const response = await axios.get('/auth/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setUser(response.data);
+    };
+
+    fetchProfile();
+  }, []);
+
+  console.log('user', user);
+
   const options = useMemo(
     () => ({
       spellChecker: false,
@@ -35,7 +62,12 @@ export const NewpostPage = () => {
               id="title"
               placeholder="Title..."></input>
           </div>
-          <SimpleMdeReact options={options} className="newpost-page__form-text" />
+          <SimpleMdeReact
+            options={options}
+            className="newpost-page__form-text"
+            type="text"
+            name="text"
+          />
           <div className="newpost-page__form-buttons-group">
             <button type="submit" className="newpost-page__form-submit">
               <p>SUBMIT</p>

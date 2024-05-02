@@ -30,7 +30,7 @@ function App() {
 
           {/* POST */}
           <Route path="/posts/:id" element={<PostPage />} />
-          <Route path="/new-post" element={<NewpostPage />} />
+          <Route path="/new-post" element={<NewpostPage isUserLoggedIn={isUserLoggedIn} />} />
           <Route path="/edit-post" element={<EditpostPage />} />
 
           <Route path="/profile" element={<ProfilePage />} />
