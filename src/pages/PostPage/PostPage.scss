@@ -1,0 +1,22 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.post-page {
+  background-color: $background-grey;
+
+  &__wrapper {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    @include tablet {
+      padding: 1.5rem;
+    }
+
+    @include desktop {
+      padding: 2rem;
+    }
+  }
+}
