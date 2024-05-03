@@ -1,0 +1,103 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.header {
+  background-color: $header;
+
+  &__wrapper {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    @include tablet {
+      padding: 1.5rem;
+    }
+
+    @include desktop {
+      padding: 2rem;
+    }
+  }
+
+  &__logo {
+    a {
+      color: $white;
+      @include mobile-header-bold;
+    }
+  }
+
+  &__buttons-out {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &-login {
+      @include mobile-label-buttons;
+      padding: 0.5rem 3.043rem;
+      background-color: $background-grey;
+      color: $button-blue;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    &-login:hover {
+      color: $background-grey;
+      background-color: $button-blue;
+    }
+
+    &-create {
+      @include mobile-label-buttons;
+      padding: 0.5rem;
+      color: $background-grey;
+      background-color: $button-blue;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    &-create:hover {
+      background-color: $background-grey;
+      color: $button-blue;
+    }
+  }
+
+  &__buttons-in {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include tablet {
+      flex-direction: row;
+    }
+
+    &-post {
+      @include mobile-label-buttons;
+      padding: 0.5rem 1.543rem;
+      color: $background-grey;
+      background-color: $button-blue;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    &-post:hover {
+      background-color: $background-grey;
+      color: $button-blue;
+    }
+
+    &-logout {
+      @include mobile-label-buttons;
+      padding: 0.5rem 2.575rem;
+      background-color: $orange;
+      color: $background-grey;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    &-logout:hover {
+      background-color: $background-grey;
+      color: $orange;
+    }
+  }
+}

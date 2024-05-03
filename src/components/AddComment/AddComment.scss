@@ -1,0 +1,41 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.add-comment {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &-text {
+      @include mobile-body-regular;
+      padding: 0.5rem;
+      border: 1px solid $border-grey;
+      border-radius: 4px;
+      background-color: $background-grey;
+      height: 6.406rem;
+      resize: none;
+      width: -moz-available;
+      width: -webkit-fill-available;
+    }
+
+    &-button {
+      @include mobile-label-buttons;
+      padding: 0.5rem;
+      color: $background-grey;
+      background-color: $button-blue;
+      border-radius: 4px;
+      cursor: pointer;
+      align-items: center;
+
+      img {
+        float: left;
+      }
+
+      p {
+        padding-top: 2px;
+      }
+    }
+  }
+}
