@@ -2,8 +2,10 @@
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/variables' as *;
 
-.home-page {
+.post {
   background-color: $background-grey;
+  border-radius: 4px;
+  border: 1px solid $border-grey;
 
   &__wrapper {
     padding: 1rem;
@@ -13,10 +15,16 @@
 
     @include tablet {
       padding: 1.5rem;
+      gap: 1.5rem;
     }
 
     @include desktop {
       padding: 2rem;
+      gap: 2rem;
     }
   }
+  &__text {
+    @include mobile-body-regular;
+  }
 }
+
