@@ -22,10 +22,8 @@
   }
 
   &__logo {
-    a {
       color: $white;
       @include mobile-header-bold;
-    }
   }
 
   &__buttons-out {

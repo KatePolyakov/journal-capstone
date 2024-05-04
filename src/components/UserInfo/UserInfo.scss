@@ -1,0 +1,35 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.user-info {
+  &__header {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  &__profile-img {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &__name-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__name {
+    @include mobile-body-demi;
+    color: $button-blue;
+  }
+
+  &__name:hover {
+    color: $light-blue;
+  }
+
+  &__date {
+    @include mobile-body-regular;
+    color: $grey;
+  }
+}
