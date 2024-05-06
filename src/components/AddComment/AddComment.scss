@@ -4,6 +4,7 @@
 
 .add-comment {
   &__form {
+    @include mobile-body-regular;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

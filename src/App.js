@@ -14,7 +14,6 @@ import './App.scss';
 
 function App() {
   const dispatch = useDispatch();
-  //const isAuth = useSelector(selectIsAuth);
 
   useEffect(() => {
     dispatch(fetchAuthMe());
@@ -26,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/posts/:id" element={<FullpostPage />} />
-        <Route path="/posts/:id/edit" element={<AddPost/>} />
+        <Route path="/posts/:id/edit" element={<AddPost />} />
         <Route path="/add-post" element={<AddPost />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<SignupPage />} />

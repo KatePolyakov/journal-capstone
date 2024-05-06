@@ -49,9 +49,7 @@ export const AddPost = () => {
   const onChange = useCallback((value) => {
     setText(value);
   }, []);
-
   //edit post
-
   useEffect(() => {
     if (id) {
       axios.get(`/posts/${id}`).then(({ data }) => {
@@ -61,8 +59,7 @@ export const AddPost = () => {
         setTags(data.tags.join(','));
       });
     }
-  }, []);
-
+  }, [id]);
   const onSubmit = async () => {
     try {
       setIsLoading(true);

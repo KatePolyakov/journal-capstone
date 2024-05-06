@@ -4,6 +4,7 @@
 
 .post-page {
   background-color: $background-grey;
+  @include mobile-body-regular;
 
   &__wrapper {
     padding: 1rem;

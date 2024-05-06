@@ -15,9 +15,9 @@ export const SignupPage = () => {
     formState: { isValid },
   } = useForm({
     defaultValues: {
-      fullName: 'Joe Joe',
-      email: 'joe@mm.com',
-      password: '12345',
+      fullName: '',
+      email: '',
+      password: '',
     },
     mode: 'onChange',
   });
