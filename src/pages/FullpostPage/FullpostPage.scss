@@ -6,6 +6,8 @@
   background-color: $background-grey;
   border-radius: 4px;
   border: 1px solid $border-grey;
+  justify-content: center;
+  display: flex;
 
   &__wrapper {
     padding: 1rem;
@@ -27,4 +29,3 @@
     @include mobile-body-regular;
   }
 }
-

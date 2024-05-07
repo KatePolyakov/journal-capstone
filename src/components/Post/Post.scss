@@ -7,6 +7,14 @@
   border-radius: 4px;
   border: 1px solid $border-grey;
 
+  @include tablet {
+    width: 31.25rem;
+  }
+
+  @include desktop {
+    width: 44.25rem;
+  }
+
   a {
     color: $black;
   }
@@ -56,6 +64,10 @@
 
   &__title {
     @include mobile-subheader-bold;
+
+    @include tablet {
+      @include tablet-desktop-header-bold;
+    }
   }
 
   &__tags {
